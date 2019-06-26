@@ -12,6 +12,7 @@ export const PropertiesTableCaption = styled.caption`
 
 export const PropertyCell = styled.td<{ kind?: string }>`
   border-left: 1px solid ${props => props.theme.schema.linesColor};
+  border-top: 1px solid #e3e8ee;
   box-sizing: border-box;
   position: relative;
   padding: 10px 10px 10px 0;
@@ -52,6 +53,10 @@ export const PropertyCell = styled.td<{ kind?: string }>`
     background: none;
     border-left-color: transparent;
   }
+
+  tr.expanded & {
+    border-top: none;
+  }
 `;
 
 export const PropertyCellWithInner = styled(PropertyCell)`
@@ -63,7 +68,8 @@ export const PropertyNameCell = styled(PropertyCell)`
   line-height: 20px;
   white-space: nowrap;
   font-size: 0.929em;
-  font-family: ${props => props.theme.typography.headings.fontFamily};
+  font-weight: bold;
+  font-family: Courier,monospace;
 
   &.deprecated {
     ${deprecatedCss};
@@ -75,13 +81,13 @@ export const PropertyNameCell = styled(PropertyCell)`
 `;
 
 export const PropertyDetailsCell = styled.td`
-  border-bottom: 1px solid #9fb4be;
+  border-top: 1px solid #e3e8ee;
   padding: 10px 0;
   width: ${props => props.theme.schema.defaultDetailsWidth};
   box-sizing: border-box;
 
   tr.expanded & {
-    border-bottom: none;
+    border-top: none;
   }
 `;
 
@@ -121,9 +127,14 @@ export const PropertiesTable = styled.table`
   border-spacing: 0;
   width: 100%;
 
+  tr:first-child td {
+    border-top: none;
+  }
+
   > tr {
     vertical-align: middle;
   }
+  
 
   &
     ${InnerPropertiesWrap},
@@ -140,6 +151,10 @@ export const PropertiesTable = styled.table`
     margin: ${({ theme }) => theme.schema.nestingSpacing};
     margin-right: 0;
     background: ${({ theme }) => theme.schema.nestedBackground};
+    td {
+      border-top: 1px solid #e3e8ee;
+      border-bottom: none;
+    }
   }
 
   &
