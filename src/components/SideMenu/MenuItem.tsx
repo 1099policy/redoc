@@ -3,9 +3,15 @@ import * as React from 'react';
 
 import { ShelfIcon } from '../../common-elements/shelfs';
 import { IMenuItem, OperationModel } from '../../services';
-import { shortenHTTPVerb } from '../../utils/openapi';
 import { MenuItems } from './MenuItems';
-import { MenuItemLabel, MenuItemLi, MenuItemTitle, OperationBadge } from './styled.elements';
+import { MenuItemLabel, MenuItemLi, MenuItemTitle } from './styled.elements';
+
+const styles = {
+  subList: {
+    color: "#666666",
+    paddingLeft: "20px",
+  } as React.CSSProperties,
+}
 
 export interface MenuItemProps {
   item: IMenuItem;
@@ -52,17 +58,17 @@ export class MenuItem extends React.Component<MenuItemProps> {
         {item.type === 'operation' ? (
           <OperationMenuItemContent {...this.props} item={item as OperationModel} />
         ) : (
-          <MenuItemLabel depth={item.depth} active={item.active} type={item.type}>
-            <MenuItemTitle title={item.name}>
-              {item.name}
-              {this.props.children}
-            </MenuItemTitle>
-            {(item.depth > 0 && item.items.length > 0 && (
-              <ShelfIcon float={'right'} direction={item.expanded ? 'down' : 'right'} />
-            )) ||
-              null}
-          </MenuItemLabel>
-        )}
+            <MenuItemLabel depth={item.depth} active={item.active} type={item.type}>
+              <MenuItemTitle title={item.name}>
+                {item.name}
+                {this.props.children}
+              </MenuItemTitle>
+              {(item.depth > 0 && item.items.length > 0 && (
+                <ShelfIcon float={'right'} direction={item.expanded ? 'down' : 'right'} />
+              )) ||
+                null}
+            </MenuItemLabel>
+          )}
         {!withoutChildren && item.items && item.items.length > 0 && (
           <MenuItems
             expanded={item.expanded}
@@ -85,8 +91,7 @@ export class OperationMenuItemContent extends React.Component<OperationMenuItemC
     const { item } = this.props;
     return (
       <MenuItemLabel depth={item.depth} active={item.active} deprecated={item.deprecated}>
-        <OperationBadge type={item.httpVerb}>{shortenHTTPVerb(item.httpVerb)}</OperationBadge>
-        <MenuItemTitle width="calc(100% - 38px)">
+        <MenuItemTitle width="calc(100% - 38px)" style={styles.subList}>
           {item.name}
           {this.props.children}
         </MenuItemTitle>
