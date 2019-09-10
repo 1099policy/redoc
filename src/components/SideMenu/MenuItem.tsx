@@ -9,7 +9,7 @@ import { MenuItemLabel, MenuItemLi, MenuItemTitle } from './styled.elements';
 const styles = {
   subList: {
     color: "#666666",
-    paddingLeft: "20px",
+    paddingLeft: "15px",
   } as React.CSSProperties,
 }
 

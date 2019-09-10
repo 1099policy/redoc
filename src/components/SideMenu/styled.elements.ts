@@ -64,9 +64,9 @@ export const OperationBadge = styled.span.attrs((props: { type: string }) => ({
 
 function menuItemActiveBg(depth, { theme }): string {
   if (depth > 1) {
-    return darken(0.1, theme.menu.backgroundColor);
+    return darken(0.03, theme.menu.backgroundColor);
   } else if (depth === 1) {
-    return darken(0.05, theme.menu.backgroundColor);
+    return darken(0.03, theme.menu.backgroundColor);
   } else {
     return '';
   }
@@ -133,6 +133,7 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
     (type === 'section' && depth > 1 && 'padding-left: ' + theme.spacing.unit * 8 + 'px;') || ''}
   display: flex;
   justify-content: space-between;
+  font-weight: 500;
   font-family: ${props => props.theme.typography.headings.fontFamily};
   ${props => menuItemDepth[props.depth]};
   background-color: ${props => (props.active ? menuItemActiveBg(props.depth, props) : '')};
@@ -140,7 +141,7 @@ export const MenuItemLabel = styled.label.attrs((props: MenuItemLabelType) => ({
   ${props => (props.deprecated && deprecatedCss) || ''};
 
   &:hover {
-    background-color: ${props => menuItemActiveBg(props.depth, props)};
+    color: #000000;
   }
 
   ${ShelfIcon} {

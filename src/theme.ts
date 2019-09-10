@@ -125,7 +125,7 @@ const defaultTheme: ThemeInterface = {
   menu: {
     width: '260px',
     backgroundColor: '#fafafa',
-    textColor: '#333333',
+    textColor: '#555555',
     groupItems: {
       textTransform: 'uppercase',
     },
